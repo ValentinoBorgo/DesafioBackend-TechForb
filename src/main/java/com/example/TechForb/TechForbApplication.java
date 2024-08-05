@@ -13,9 +13,6 @@ public class TechForbApplication {
 		SpringApplication.run(TechForbApplication.class, args);
 	}
 
-	@Value("${cors.allowed.origins}")
-    private String[] allowedOrigins;
-
         @Bean
         public WebMvcConfigurer corsConfigurer() {
 	return new WebMvcConfigurer() {
@@ -23,7 +20,7 @@ public class TechForbApplication {
 		public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
                     //we can provide other routes, further than the "/**".
 			registry.addMapping("/**")
-								.allowedOrigins(allowedOrigins)
+								.allowedOrigins("https://desafio-front-end-tech-forb.vercel.app")
                                 .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
                                 .allowedHeaders("Authorization","Content-Type","X-Requested-With", "multipart/form-data")
                                 .allowCredentials(true);
