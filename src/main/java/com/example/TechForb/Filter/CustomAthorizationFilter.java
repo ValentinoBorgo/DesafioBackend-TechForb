@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 
