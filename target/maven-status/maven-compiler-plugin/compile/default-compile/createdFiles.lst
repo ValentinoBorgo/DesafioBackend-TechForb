@@ -1,5 +1,4 @@
 com\example\TechForb\Repository\IUsuarioRepository.class
-com\example\TechForb\Config\EnvClass.class
 com\example\TechForb\Model\Usuario.class
 com\example\TechForb\Controller\PlantaController.class
 com\example\TechForb\Filter\CustomAthenticationFilter.class
