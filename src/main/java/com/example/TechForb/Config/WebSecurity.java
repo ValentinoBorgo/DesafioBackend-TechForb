@@ -50,24 +50,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
         http.authorizeRequests().antMatchers("/api/users/login/**", "/api/users/token/refresh/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/registrar/newUser").permitAll();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/**").authenticated();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/**").authenticated();
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/**").authenticated();
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/**").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/competencias/crear").permitAll();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/get").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/getById/{id}").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/getIdByName/{name}").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/franquicias/get").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/partido/get").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/partido/getPartido/{id}").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/clasificaciones/get").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/edit/{id}").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/users/delete/{id}").authenticated();
-        // http.authorizeRequests().antMatchers(HttpMethod.POST,
-        // "/api/v1/usuario/save/**").hasAnyAuthority("ROLE_ADMIN",
-        // "ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAthenticationFilter);
         http.addFilterBefore(new CustomAthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

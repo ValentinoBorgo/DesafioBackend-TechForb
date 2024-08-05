@@ -30,6 +30,11 @@ public class SensorController {
 
         return iSensorService.getSensores();
     }
+
+    @GetMapping("/sensoresDeshabilitados")
+    public Integer getMaxSensoresDeshabilitados() {
+        return iSensorService.getMaxSensoresDeshabilitados();
+    }
     
     @GetMapping("/{id}")
     public ResponseEntity<SensorResponse> obtenerSensor(@PathVariable Long id) {

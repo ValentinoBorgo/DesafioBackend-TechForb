@@ -5,6 +5,8 @@
 package com.example.TechForb.Security;
 
 import com.example.TechForb.Model.Usuario;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,6 +31,16 @@ public class SecurityUser implements UserDetails {
     @Override
     public String getUsername() {
         return user.getEmail();
+    }
+
+    public ArrayList<String> getDatos() {
+        
+        ArrayList<String> datos = new ArrayList<>();
+        datos.add(user.getNombre());
+        datos.add(user.getApellido());
+        datos.add(user.getEmail());
+
+        return datos;
     }
 
     @Override

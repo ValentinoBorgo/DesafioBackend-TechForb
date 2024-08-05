@@ -1,6 +1,7 @@
 package com.example.TechForb.Filter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class CustomAthenticationFilter extends UsernamePasswordAuthenticationFil
                         throws AuthenticationException {
                 String email = request.getParameter("email");
                 String password = request.getParameter("contrasenia");
-                log.info("Username es : {}", email);
+                log.info("Email es : {}", email);
                 log.info("Contraseña es : {}", password);
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                                 email,
@@ -66,8 +67,11 @@ public class CustomAthenticationFilter extends UsernamePasswordAuthenticationFil
                                 
                 Map<String, String> tokens = new HashMap<>();
 
+                ArrayList<String> datos = user.getDatos();
+
                 tokens.put("access_token", access_token);
                 tokens.put("refresh_token", refresh_token);
+                tokens.put("datos", datos.toString());
 
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(), tokens);

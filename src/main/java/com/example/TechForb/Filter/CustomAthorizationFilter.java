@@ -43,7 +43,6 @@ public class CustomAthorizationFilter extends OncePerRequestFilter {
         System.out.println("URL :  : " + request.getRequestURI());
 
         if (request.getMethod().equals(HttpMethod.OPTIONS.name())) {
-            System.out.println("PRIMER IF OPTIOS");
             // Si es una solicitud OPTIONS, devuelve un estado autorizado (HTTP 200) sin procesar la autenticación.
             response.setStatus(HttpStatus.OK.value());
             response.setHeader("Access-Control-Allow-Origin", "*");
@@ -89,7 +88,6 @@ public class CustomAthorizationFilter extends OncePerRequestFilter {
                         new ObjectMapper().writeValue(response.getOutputStream(), error);
                     }
                 } else {
-                    System.out.println("CHATCHATCHAT");
                     System.out.println("REQUEST = " + request.getRequestURL() + request.getMethod() + " RESPONSE = " + response.getStatus());
                     filterChain.doFilter(request, response);
                 }

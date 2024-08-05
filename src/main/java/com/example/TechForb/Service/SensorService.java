@@ -11,6 +11,7 @@ import com.example.TechForb.Dto.SensorResponse;
 import com.example.TechForb.Model.Planta;
 import com.example.TechForb.Model.Sensor;
 import com.example.TechForb.Repository.ISensorRepository;
+import com.example.TechForb.Utils.Estado;
 
 @Service
 public class SensorService implements ISensorService{
@@ -70,6 +71,21 @@ public class SensorService implements ISensorService{
             return null;
         }
 
+    }
+
+    @Override
+    public Integer getMaxSensoresDeshabilitados() {
+
+        int maxSensoresDeshabilitados = 0;
+
+        for (Sensor s : this.getSensores()) {
+            if(s.getEstado().equals(Estado.deshabilitado)){
+                maxSensoresDeshabilitados++;
+            }
+        }
+
+        return maxSensoresDeshabilitados;
+        
     }
 
 

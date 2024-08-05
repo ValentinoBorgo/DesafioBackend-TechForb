@@ -1,5 +1,6 @@
 package com.example.TechForb.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.TechForb.Dto.PlantaResponse;
@@ -16,4 +17,6 @@ public interface IPlantaService {
     public PlantaResponse getPlanta(Long id);
 
     public Planta editarPlanta(Long id, Planta planta);
+
+    public HashMap<String, Integer> getTotalizadores();
 }

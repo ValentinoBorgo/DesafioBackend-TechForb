@@ -33,6 +33,8 @@ public class UsuarioService implements IUsuarioService{
     @Override
     public Usuario guardarUsuario(Usuario user) {
 
+        user.setContrasenia(passwordEncoder.encode(user.getContrasenia()));
+
         return userRepo.save(user);
 
     }

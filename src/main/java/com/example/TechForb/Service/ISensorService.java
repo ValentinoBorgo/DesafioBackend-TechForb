@@ -17,5 +17,5 @@ public interface ISensorService {
 
     public Sensor editarSensor(Long id, Sensor sensor);
 
-
+    public Integer getMaxSensoresDeshabilitados();
 }

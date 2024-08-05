@@ -1,5 +1,6 @@
 package com.example.TechForb.Controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,12 @@ public class PlantaController {
 
         return iPlantaService.getPlantas();
     }
+
+    @GetMapping("/getTotalizadores")
+    public HashMap<String, Integer> getTotalizadores() {
+        return iPlantaService.getTotalizadores();
+    }
+
     
     @GetMapping("/{id}")
     public ResponseEntity<PlantaResponse> obtenerPlanta(@PathVariable Long id) {
