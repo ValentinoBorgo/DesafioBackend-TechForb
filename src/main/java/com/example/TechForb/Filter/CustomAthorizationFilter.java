@@ -28,11 +28,15 @@ import lombok.extern.slf4j.Slf4j;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 
 @Slf4j
 public class CustomAthorizationFilter extends OncePerRequestFilter {
+
+    @Value("${cors.allowed.origins}")
+    private String[] allowedOrigins;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -41,21 +45,22 @@ public class CustomAthorizationFilter extends OncePerRequestFilter {
         System.out.println("METODO DE AUTENTICACION : " + request.getMethod());
         System.out.println("ENCABEZADO DE AUTORIZACION :  : " + request);
         System.out.println("URL :  : " + request.getRequestURI());
+        System.out.println("CORS" + allowedOrigins.toString());
 
         if (request.getMethod().equals(HttpMethod.OPTIONS.name())) {
             // Si es una solicitud OPTIONS, devuelve un estado autorizado (HTTP 200) sin procesar la autenticación.
             response.setStatus(HttpStatus.OK.value());
-            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setHeader("Access-Control-Allow-Origin", allowedOrigins.toString());
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, OPTIONS, PUT");
             response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type,X-Requested-With");
-            // response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
         } else {
             if (request.getServletPath().equals("/api/users/login")
                     || request.getServletPath().equals("/api/users/token/refresh")) {
-                response.setHeader("Access-Control-Allow-Origin", "*");
+                response.setHeader("Access-Control-Allow-Origin", allowedOrigins.toString());
                 response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, OPTIONS, PUT");
                 response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type,X-Requested-With");
-                // response.setHeader("Access-Control-Allow-Credentials", "true");
+                response.setHeader("Access-Control-Allow-Credentials", "true");
                 filterChain.doFilter(request, response);
             } else {
                 String authorizationHeader = request.getHeader(AUTHORIZATION);
